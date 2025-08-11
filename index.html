@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Board App by Paritosh Barman</title>
+
+  <script>
+    // Wake up the Render backend server early to reduce delay in first real API request (Because I am using render free service for deploying the backend)
+    fetch('https://job-board-app-cct1.onrender.com')
+      .then(() => console.log("Backend wake-up ping sent"))
+      .catch((err) => console.log("Backend wake-up failed:", err));
+  </script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
