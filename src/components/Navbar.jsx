@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../redux/authSlice';
-import { Menu, X } from 'lucide-react';
-import RoleBased from './RoleBased';
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/authSlice";
+import { Menu, X } from "lucide-react";
+import RoleBased from "./RoleBased";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate("/login");
     setMenuOpen(false);
   };
 
@@ -22,24 +22,26 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinkStyles =
-    'block text-sm font-medium text-slate-700 hover:text-indigo-600 transition';
+    "block text-sm font-medium text-slate-700 hover:text-indigo-600 transition";
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? 'shadow-md py-2' : 'py-3'
-        }`}
+      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
+        isScrolled ? "shadow-md py-2" : "py-3"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link
           to="/"
-          className={`text-indigo-600 font-bold tracking-tight hover:opacity-90 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'
-            }`}
+          className={`text-indigo-600 font-bold tracking-tight hover:opacity-90 transition-all duration-300 ${
+            isScrolled ? "text-xl" : "text-2xl"
+          }`}
         >
           JobBoard
         </Link>
@@ -49,7 +51,7 @@ const Navbar = () => {
           {user ? (
             <>
               <span className="text-sm text-slate-700">
-                {user.email}{' '}
+                {user.email}{" "}
                 <span className="text-xs text-slate-500">({user.role})</span>
               </span>
 
@@ -61,13 +63,13 @@ const Navbar = () => {
                 Jobs
               </NavLink>
 
-              <RoleBased roles={['job_seeker']}>
+              <RoleBased roles={["job_seeker"]}>
                 <NavLink to="/my-applications" className={navLinkStyles}>
                   My Applications
                 </NavLink>
               </RoleBased>
 
-              <RoleBased roles={['admin', 'recruiter']}>
+              <RoleBased roles={["admin", "recruiter"]}>
                 <NavLink to="/dashboard" className={navLinkStyles}>
                   Dashboard
                 </NavLink>
@@ -113,20 +115,28 @@ const Navbar = () => {
           {user ? (
             <>
               <div className="font-medium">
-                {user.email}{' '}
+                {user.email}{" "}
                 <span className="text-xs text-slate-500">({user.role})</span>
               </div>
 
-              <Link to="/" className={navLinkStyles} onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/"
+                className={navLinkStyles}
+                onClick={() => setMenuOpen(false)}
+              >
                 Home
               </Link>
 
-              <Link to="/jobs" className={navLinkStyles} onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/jobs"
+                className={navLinkStyles}
+                onClick={() => setMenuOpen(false)}
+              >
                 Jobs
               </Link>
 
               {/* Role-based links */}
-              {user.role === 'job_seeker' && (
+              {user.role === "job_seeker" && (
                 <Link
                   to="/my-applications"
                   className={navLinkStyles}
@@ -136,7 +146,7 @@ const Navbar = () => {
                 </Link>
               )}
 
-              {(user.role === 'recruiter' || user.role === 'admin') && (
+              {(user.role === "recruiter" || user.role === "admin") && (
                 <>
                   <Link
                     to="/dashboard"
@@ -164,13 +174,25 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/" className={navLinkStyles} onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/"
+                className={navLinkStyles}
+                onClick={() => setMenuOpen(false)}
+              >
                 Home
               </Link>
-              <Link to="/login" className={navLinkStyles} onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/login"
+                className={navLinkStyles}
+                onClick={() => setMenuOpen(false)}
+              >
                 Login
               </Link>
-              <Link to="/register" className={navLinkStyles} onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/register"
+                className={navLinkStyles}
+                onClick={() => setMenuOpen(false)}
+              >
                 Register
               </Link>
             </>

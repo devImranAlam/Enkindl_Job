@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,11 +10,14 @@ import {
   BarElement,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
-import JobFormModal from '../components/JobFormModal';
-import { fetchRecruiterApplications, fetchAdminApplications } from '../redux/applicationSlice';
-import { fetchJobs } from '../redux/jobSlice';
+import JobFormModal from "../components/JobFormModal";
+import {
+  fetchRecruiterApplications,
+  fetchAdminApplications,
+} from "../redux/applicationSlice";
+import { fetchJobs } from "../redux/jobSlice";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -28,11 +31,10 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (user?.role === 'recruiter' || user?.role === 'admin') {
+    if (user?.role === "recruiter" || user?.role === "admin") {
       if (user?.role == "admin") {
         dispatch(fetchAdminApplications());
-      }
-      else {
+      } else {
         dispatch(fetchRecruiterApplications());
       }
       dispatch(fetchJobs());
@@ -48,9 +50,9 @@ const Dashboard = () => {
   }
   const stats = {
     Applied: applications.length,
-    Shortlisted: applications.filter((a) => a.status === 'shortlisted').length,
-    Accepted: applications.filter((a) => a.status === 'accepted').length,
-    Rejected: applications.filter((a) => a.status === 'rejected').length,
+    Shortlisted: applications.filter((a) => a.status === "shortlisted").length,
+    Accepted: applications.filter((a) => a.status === "accepted").length,
+    Rejected: applications.filter((a) => a.status === "rejected").length,
   };
 
   return (
@@ -63,12 +65,12 @@ const Dashboard = () => {
         {/* Header */}
         <div className="text-center">
           <h2 className="text-3xl font-bold text-indigo-700 mb-2">
-            Welcome back, {user?.name || 'User'} 👋
+            Welcome back, {user?.name || "User"} 👋
           </h2>
           <p className="text-gray-600">
-            {user?.role === 'recruiter' || user?.role === 'admin'
-              ? 'Manage your job postings and applications here.'
-              : 'Browse jobs and track your applications.'}
+            {user?.role === "recruiter" || user?.role === "admin"
+              ? "Manage your job postings and applications here."
+              : "Browse jobs and track your applications."}
           </p>
         </div>
 
@@ -78,8 +80,12 @@ const Dashboard = () => {
             whileHover={{ scale: 1.03 }}
             className="bg-white p-6 shadow rounded-lg border border-indigo-100"
           >
-            <h3 className="text-xl font-semibold text-indigo-700 mb-2">Post New Job</h3>
-            <p className="text-gray-600 mb-4">Create and publish a new job listing for seekers.</p>
+            <h3 className="text-xl font-semibold text-indigo-700 mb-2">
+              Post New Job
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Create and publish a new job listing for seekers.
+            </p>
             <button
               onClick={() => setShowModal(true)}
               className="text-sm bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
@@ -92,10 +98,14 @@ const Dashboard = () => {
             whileHover={{ scale: 1.03 }}
             className="bg-white p-6 shadow rounded-lg border border-indigo-100"
           >
-            <h3 className="text-xl font-semibold text-indigo-700 mb-2">Manage Listings</h3>
-            <p className="text-gray-600 mb-4">View, update or delete your job postings.</p>
+            <h3 className="text-xl font-semibold text-indigo-700 mb-2">
+              Manage Listings
+            </h3>
+            <p className="text-gray-600 mb-4">
+              View, update or delete your job postings.
+            </p>
             <button
-              onClick={() => navigate('/jobs')}
+              onClick={() => navigate("/jobs")}
               className="text-sm bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
             >
               Manage Jobs
@@ -106,10 +116,14 @@ const Dashboard = () => {
             whileHover={{ scale: 1.03 }}
             className="bg-white p-6 shadow rounded-lg border border-indigo-100"
           >
-            <h3 className="text-xl font-semibold text-indigo-700 mb-2">View Applications</h3>
-            <p className="text-gray-600 mb-4">Check who has applied to your job listings.</p>
+            <h3 className="text-xl font-semibold text-indigo-700 mb-2">
+              View Applications
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Check who has applied to your job listings.
+            </p>
             <button
-              onClick={() => navigate('/manage-applications')}
+              onClick={() => navigate("/manage-applications")}
               className="text-sm bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
             >
               View Applicants
@@ -147,9 +161,14 @@ const Dashboard = () => {
                 labels: Object.keys(stats),
                 datasets: [
                   {
-                    label: 'Applications',
+                    label: "Applications",
                     data: Object.values(stats),
-                    backgroundColor: ['#60a5fa', '#facc15', '#10b981', '#f87171'],
+                    backgroundColor: [
+                      "#60a5fa",
+                      "#facc15",
+                      "#10b981",
+                      "#f87171",
+                    ],
                     borderRadius: 6,
                   },
                 ],

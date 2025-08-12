@@ -1,7 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import AppRoutes from './routes/routes';
-import { Toaster } from 'react-hot-toast';
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import AppRoutes from "./routes/routes";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
